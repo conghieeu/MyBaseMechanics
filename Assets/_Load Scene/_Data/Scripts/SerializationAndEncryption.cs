@@ -9,117 +9,142 @@ using System.Text;
 using System.Linq;
 using System.Xml;
 
+[Serializable]
+public class PlayerData
+{
+    public string name;
+    public int level;
+    public int experience;
+    public int health;
+    public int mana;
+    public Vector3 position;
+    public int currency; // Thêm thuộc tính để lưu trữ tiền tệ
+}
+
+[Serializable]
+public class WorldState
+{
+    public string dayTime;
+    public string weather;
+}
+
+[Serializable]
+public class GameSettings
+{
+    public float volume;
+    public string graphics;
+}
+
+[Serializable]
+public class Pet
+{
+    public string petName;
+    public int petID;
+    public string type;
+    public int level;
+    public Vector3 position;
+}
+
+[Serializable]
+public class GameData
+{
+    public PlayerData player = new PlayerData();
+    public WorldState worldState = new WorldState();
+    public GameSettings gameSettings = new GameSettings();
+    public List<Pet> pets = new List<Pet>(); // Thêm danh sách thú cưng
+}
+
 namespace HieuDev
 {
-
-    [System.Serializable]
-    public struct WeaponInfo
-    {
-        public string weaponID;
-        public int durability;
-    }
-
     public class SerializationAndEncryption : MonoBehaviour
     {
-        [SerializeField] TMPro.TextMeshProUGUI text;
+        // [SerializeField] TMPro.TextMeshProUGUI text;
         [SerializeField] bool serialize;
         [SerializeField] bool usingXML;
         [SerializeField] bool encrypt;
+        [SerializeField] string filePath;
+        public GameData _gameData;
 
         void Start()
         {
-            WeaponInfo createdWeaponInfo = new WeaponInfo();
-            createdWeaponInfo.weaponID = "Dirty Knife";
-            createdWeaponInfo.durability = 5;
-
-            text.text = createdWeaponInfo.ToString();
-            Debug.Log("Weapon ID: " + createdWeaponInfo.weaponID);
-
-            SerializeAndEncrypt(createdWeaponInfo);
-            Deserialized();
+            filePath = Application.persistentDataPath + "/gameData.save";
+            DontDestroyOnLoad(gameObject);
         }
 
-
-
-        public void SavePosition(Vector3 position)
+        private void Update()
         {
-            PositionData data = new PositionData();
-            data.x = position.x;
-            data.y = position.y;
-            data.z = position.z;
-
-            string json = JsonUtility.ToJson(data);
-
-            string filePath = Application.persistentDataPath + "/playerPosition.json";
-            File.WriteAllText(filePath, json);
-
-            Debug.Log("Position saved to: " + filePath);
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                SaveGameData(_gameData);
+            }
         }
 
-        public Vector3 LoadPosition()
+        public void SaveGameData(GameData gameData)
         {
-            string filePath = Application.persistentDataPath + "/playerPosition.json";
+            File.WriteAllText(filePath, SerializeAndEncrypt(gameData));
+            Debug.Log("Game data saved to: " + filePath);
+        }
 
+        public GameData LoadGameData()
+        {
             if (File.Exists(filePath))
             {
-                string json = File.ReadAllText(filePath);
-                PositionData data = JsonUtility.FromJson<PositionData>(json);
-
-                Vector3 position = new Vector3(data.x, data.y, data.z);
-                Debug.Log("Position loaded from: " + filePath);
-                return position;
+                string stringData = File.ReadAllText(filePath);
+                Debug.Log("Game data loaded from: " + filePath);
+                
+                _gameData = LoadGameData();
+                return Deserialized(stringData);
             }
             else
             {
-                Debug.LogWarning("File not found at: " + filePath);
-                return Vector3.zero; // Hoặc vị trí mặc định nào đó
-            }
-        }
-
-        /// <summary> Now let's de-serialize and de-encrypt.... </summary>
-        private void Deserialized()
-        {
-            string stringData = text.text;
-            if (encrypt)
-            {
-                stringData = Utils.DecryptAES(stringData);
-                Debug.Log("Decrypted: " + stringData);
-            }
-
-            WeaponInfo derivedWeaponInfo = new WeaponInfo();
-            if (serialize)
-            {
-                if (usingXML)
-                    derivedWeaponInfo = Utils.DeserializeXML<WeaponInfo>(stringData);
-                else
-                    derivedWeaponInfo = JsonUtility.FromJson<WeaponInfo>(stringData);
-
-                Debug.Log("Deserialized: " + derivedWeaponInfo.weaponID);
+                Debug.LogWarning("Save file not found in: " + filePath);
+                return null;
             }
         }
 
         /// <summary> Let's first serialize and encrypt.... </summary>
-        private void SerializeAndEncrypt(WeaponInfo createdWeaponInfo)
+        private string SerializeAndEncrypt(GameData gameData)
         {
+            string stringData = "";
+
             if (serialize)
             {
                 if (usingXML)
-                    text.text = Utils.SerializeXML<WeaponInfo>(createdWeaponInfo);
+                    stringData = Utils.SerializeXML<GameData>(gameData);
                 else
-                    text.text = JsonUtility.ToJson(createdWeaponInfo);
-
-                string serialized = text.text;
-                Debug.Log("Serialized: " + serialized);
+                    stringData = JsonUtility.ToJson(gameData);
             }
 
             if (encrypt)
             {
-                text.text = Utils.EncryptAES(text.text);
-
-                string encrypted = text.text;
-                Debug.Log("Encrypted: " + encrypted);
+                stringData = Utils.EncryptAES(stringData);
             }
+
+            return stringData;
         }
+
+        /// <summary> Now let's de-serialize and de-encrypt.... </summary>
+        private GameData Deserialized(string stringData)
+        {
+            // giải mã hoá
+            if (encrypt)
+            {
+                stringData = Utils.DecryptAES(stringData);
+            }
+
+            GameData gameData = new GameData();
+
+            // đọc tuần tự hoá json hoặc xml
+            if (serialize)
+            {
+                if (usingXML)
+                    gameData = Utils.DeserializeXML<GameData>(stringData);
+                else
+                    gameData = JsonUtility.FromJson<GameData>(stringData);
+            }
+            return gameData;
+        }
+
     }
 
     public static class Utils
@@ -158,7 +183,7 @@ namespace HieuDev
             rnd.NextBytes(ivBytes);
         }
 
-        const string nameOfGame = "The Game of Life";
+        const string nameOfGame = "HieuDev";
         static void GenerateKeyBytes()
         {
             int sum = 0;

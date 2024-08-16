@@ -234,7 +234,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1036839738}
-  - component: {fileID: 1036839739}
   - component: {fileID: 1036839740}
   m_Layer: 0
   m_Name: GameData
@@ -259,18 +258,6 @@ Transform:
   - {fileID: 1022120535}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1036839739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1036839737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e39214bc1e7f4194f828ff3e94e71df6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1036839740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,10 +270,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a09b8a23409b3234fa074aeecd31594d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1903335570}
   serialize: 1
   usingXML: 0
-  encrypt: 1
+  encrypt: 0
+  filePath: 
+  gameData:
+    player:
+      name: 
+      level: 0
+      experience: 0
+      health: 0
+      mana: 0
+      position: {x: 0, y: 0, z: 0}
+      currency: 0
+    worldState:
+      dayTime: 
+      weather: 
+    gameSettings:
+      volume: 0
+      graphics: 
+    pets: []
 --- !u!1 &1903335568
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +347,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

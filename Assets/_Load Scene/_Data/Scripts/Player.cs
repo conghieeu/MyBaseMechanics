@@ -6,28 +6,18 @@ namespace HieuDev
 {
     public class Player : MonoBehaviour
     {
-        public GameObject player; // Đối tượng mà bạn muốn lưu và load vị trí
-        private SerializationAndEncryption saveLoadPosition;
+        [SerializeField] SerializationAndEncryption serializationAndEncryption;
+        [SerializeField] PlayerData playerData = new PlayerData();
 
         void Start()
         {
-            saveLoadPosition = new SerializationAndEncryption();
+            playerData.name = "HieuDev";
+            playerData.position = transform.position;
 
-            // Tải vị trí khi khởi động
-            Vector3 loadedPosition = saveLoadPosition.LoadPosition();
-            if (loadedPosition != Vector3.zero)
-            {
-                player.transform.position = loadedPosition;
-            }
+            serializationAndEncryption._gameData.player = playerData;
+
+            serializationAndEncryption.SaveGameData(serializationAndEncryption._gameData);
         }
 
-        void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                // Lưu vị trí hiện tại của đối tượng khi nhấn phím S
-                saveLoadPosition.SavePosition(player.transform.position);
-            }
-        }
     }
 }
