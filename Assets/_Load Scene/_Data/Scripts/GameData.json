@@ -1,0 +1,93 @@
+{
+    "player": {
+        "name": "Hero123",
+        "level": 15,
+        "experience": 3450,
+        "health": 100,
+        "mana": 75,
+        "position": {
+            "x": 120.5,
+            "y": 35.2,
+            "z": -45.3
+        },
+        "inventory": [
+            {
+                "itemID": 101,
+                "name": "Sword of Destiny",
+                "type": "weapon",
+                "damage": 50,
+                "durability": 85
+            },
+            {
+                "itemID": 202,
+                "name": "Health Potion",
+                "type": "consumable",
+                "quantity": 3
+            }
+        ],
+        "skills": [
+            {
+                "skillID": 301,
+                "name": "Fireball",
+                "level": 4,
+                "cooldown": 12.5
+            },
+            {
+                "skillID": 302,
+                "name": "Ice Shield",
+                "level": 2,
+                "cooldown": 20.0
+            }
+        ],
+        "completedQuests": [
+            {
+                "questID": 401,
+                "name": "Rescue the Villagers",
+                "completed": true,
+                "completionDate": "2024-08-16T14:30:00Z"
+            },
+            {
+                "questID": 402,
+                "name": "Defeat the Dragon",
+                "completed": false,
+                "completionDate": null
+            }
+        ]
+    },
+    "worldState": {
+        "dayTime": "morning",
+        "weather": "sunny",
+        "activeEvents": [
+            {
+                "eventID": 501,
+                "name": "Bandit Raid",
+                "location": {
+                    "x": 300.0,
+                    "y": 0.0,
+                    "z": -150.0
+                },
+                "isActive": true
+            }
+        ]
+    },
+    "gameSettings": {
+        "volume": {
+            "music": 0.8,
+            "effects": 0.7,
+            "voice": 0.6
+        },
+        "graphics": {
+            "resolution": "1920x1080",
+            "quality": "high",
+            "fullscreen": true
+        },
+        "controls": {
+            "moveForward": "W",
+            "moveBackward": "S",
+            "moveLeft": "A",
+            "moveRight": "D",
+            "jump": "Space",
+            "attack": "LeftMouse"
+        }
+    }
+}
