@@ -4,7 +4,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     public static T Instance { get; private set; }
 
-    [SerializeField] private bool _dontDestroyOnLoad = true;
+    [SerializeField] private bool _dontDestroyOnLoad;
 
     protected virtual void Awake()
     {

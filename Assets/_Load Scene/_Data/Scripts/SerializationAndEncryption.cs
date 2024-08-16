@@ -56,49 +56,48 @@ public class GameData
 
 namespace HieuDev
 {
-    public class SerializationAndEncryption : MonoBehaviour
+    public class SerializationAndEncryption : Singleton<SerializationAndEncryption>
     {
         // [SerializeField] TMPro.TextMeshProUGUI text;
         [SerializeField] bool serialize;
         [SerializeField] bool usingXML;
         [SerializeField] bool encrypt;
         [SerializeField] string filePath;
-        public GameData _gameData;
+        public GameData GameData;
 
         void Start()
         {
             filePath = Application.persistentDataPath + "/gameData.save";
-            DontDestroyOnLoad(gameObject);
+            SetDontDestroyOnLoad(true);
+            LoadGameData();
         }
 
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.S))
             {
-                SaveGameData(_gameData);
+                SaveGameData();
             }
         }
 
-        public void SaveGameData(GameData gameData)
+        public void SaveGameData()
         {
-            File.WriteAllText(filePath, SerializeAndEncrypt(gameData));
+            File.WriteAllText(filePath, SerializeAndEncrypt(GameData));
             Debug.Log("Game data saved to: " + filePath);
         }
 
-        public GameData LoadGameData()
+        public void LoadGameData()
         {
             if (File.Exists(filePath))
             {
                 string stringData = File.ReadAllText(filePath);
                 Debug.Log("Game data loaded from: " + filePath);
                 
-                _gameData = LoadGameData();
-                return Deserialized(stringData);
+                GameData = Deserialized(stringData);
             }
             else
             {
-                Debug.LogWarning("Save file not found in: " + filePath);
-                return null;
+                Debug.LogWarning("Save file not found in: " + filePath); 
             }
         }
 

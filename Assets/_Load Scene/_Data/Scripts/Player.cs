@@ -6,18 +6,24 @@ namespace HieuDev
 {
     public class Player : MonoBehaviour
     {
-        [SerializeField] SerializationAndEncryption serializationAndEncryption;
         [SerializeField] PlayerData playerData = new PlayerData();
 
         void Start()
         {
-            playerData.name = "HieuDev";
+            playerData.name = "HieuDev"; 
             playerData.position = transform.position;
 
-            serializationAndEncryption._gameData.player = playerData;
-
-            serializationAndEncryption.SaveGameData(serializationAndEncryption._gameData);
+            SerializationAndEncryption.Instance.GameData.player = playerData;
         }
 
+        void LoadPlayerData()
+        {
+
+        }
+
+        void SavePlayerData()
+        {
+
+        }
     }
 }
