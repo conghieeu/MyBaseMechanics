@@ -1,29 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 namespace HieuDev
 {
     public class Player : MonoBehaviour
     {
-        [SerializeField] PlayerData playerData = new PlayerData();
+        public float speed = 5;
+        [SerializeField] private InputActionReference _moveAction;
 
-        void Start()
+        private void Update()
         {
-            playerData.name = "HieuDev"; 
-            playerData.position = transform.position;
-
-            SerializationAndEncryption.Instance.GameData.player = playerData;
+            Vector2 moveDir = _moveAction.action.ReadValue<Vector2>();
+            transform.Translate(moveDir * speed * Time.deltaTime);
         }
 
-        void LoadPlayerData()
-        {
-
-        }
-
-        void SavePlayerData()
-        {
-
-        }
     }
 }

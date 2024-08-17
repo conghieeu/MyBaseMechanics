@@ -4,9 +4,11 @@ namespace HieuDev
 {
     public class GameManager : Singleton<GameManager>
     {
-        private void Start()
-        { 
+        public Input _input = new ();
 
+        private void Update()
+        { 
+        
             
         } 
     }

@@ -72,14 +72,6 @@ namespace HieuDev
             LoadGameData();
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                SaveGameData();
-            }
-        }
-
         public void SaveGameData()
         {
             File.WriteAllText(filePath, SerializeAndEncrypt(GameData));
