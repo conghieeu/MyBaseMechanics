@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 namespace HieuDev
 {
+    /// <summary> Loading khi mới khởi động game </summary>
     public class LoadingScene : MonoBehaviour
     {
         private AsyncOperation m_async; // Bien luu doi tuong AsyncOperation

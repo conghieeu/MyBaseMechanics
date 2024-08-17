@@ -9,6 +9,8 @@ namespace HieuDev
     public class Player : MonoBehaviour
     {
         public float speed = 5;
+
+        /// <summary> Cách sử dụng InputSystems bằng cách kéo thả vào </summary>
         [SerializeField] private InputActionReference _moveAction;
 
         private void Update()

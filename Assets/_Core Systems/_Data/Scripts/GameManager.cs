@@ -6,11 +6,6 @@ namespace HieuDev
     {
         public Input _input = new ();
 
-        private void Update()
-        { 
-        
-            
-        } 
     }
 
 }

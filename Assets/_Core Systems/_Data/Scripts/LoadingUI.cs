@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 namespace HieuDev
 {
+    /// <summary> Hiển thị thanh bar loading khi mới khởi động game được loading scene gọi </summary>
     public class LoadingUI : MonoBehaviour
     {
         [SerializeField] private Text m_loadingCountingTxt;
@@ -12,7 +13,6 @@ namespace HieuDev
 
         private void Start()
         {
-            m_loadingFilled.fillAmount = 0.5f;
             LoadingScene.OnLoading += UpdateUI;
         }
 

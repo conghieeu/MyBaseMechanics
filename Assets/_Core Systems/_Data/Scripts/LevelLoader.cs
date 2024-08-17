@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 namespace HieuDev
 {
+    /// <summary> Hiện ứng chuyển cảnh </summary>
     public class LevelLoader : MonoBehaviour
     {
         public Animator _anim;

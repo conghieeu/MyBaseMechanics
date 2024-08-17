@@ -17,7 +17,7 @@ namespace HieuDev
         {
             SetResolution();
         }
-
+        
         private void SetResolution()
         {
             resolutions = Screen.resolutions; // Get all available screen resolutions from the system

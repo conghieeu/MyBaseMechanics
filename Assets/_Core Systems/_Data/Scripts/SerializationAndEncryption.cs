@@ -56,6 +56,7 @@ public class GameData
 
 namespace HieuDev
 {
+    /// <summary> Là GAMEDATA, chuỗi hoá và mã hoá lưu được nhiều loại dữ liệu của đối tượng </summary>
     public class SerializationAndEncryption : Singleton<SerializationAndEncryption>
     {
         // [SerializeField] TMPro.TextMeshProUGUI text;
