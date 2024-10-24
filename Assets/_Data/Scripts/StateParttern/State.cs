@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityStandardAssets.Utility;
+using UnityEngine.AI; 
 
+[Serializable]
 public class State
 {
     public enum STATE
@@ -16,7 +17,7 @@ public class State
         ENTER, UPDATE, EXIT
     };
 
-    public STATE name;
+    protected STATE state; 
     protected EVENT stage;
     protected GameObject npc;
     protected Animator anim;
@@ -28,13 +29,13 @@ public class State
     float visAngle = 30.0f;
     float shootDist = 7.0f;
 
-    public State(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player)
+    public State(GameObject npc, NavMeshAgent agent, Animator anim, Transform player)
     {
-        npc = _npc;
-        agent = _agent;
-        anim = _anim;
         stage = EVENT.ENTER;
-        player = _player;
+        this.npc = npc;
+        this.agent = agent;
+        this.anim = anim;
+        this.player = player;
     }
 
     public virtual void Enter() { stage = EVENT.UPDATE; }
@@ -76,14 +77,12 @@ public class State
 
 }
 
-
-
 public class Idle : State
 {
     public Idle(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player)
                 : base(_npc, _agent, _anim, _player)
     {
-        name = STATE.IDLE;
+        state = STATE.IDLE;
     }
 
     public override void Enter()
@@ -100,7 +99,7 @@ public class Idle : State
             stage = EVENT.EXIT;
         }
 
-        else if (Random.Range(0, 100) < 10)
+        else if (UnityEngine.Random.Range(0, 100) < 10)
         {
             nextState = new Patrol(npc, agent, anim, player);
             stage = EVENT.EXIT;
@@ -121,14 +120,13 @@ public class Patrol : State
     public Patrol(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player)
                 : base(_npc, _agent, _anim, _player)
     {
-        name = STATE.PATROL;
+        state = STATE.PATROL;
         agent.speed = 2;
         agent.isStopped = false;
     }
 
     public override void Enter()
     {
-
         float lastDist = Mathf.Infinity;
         for(int i = 0;i<GameEnvironment.Singleton.CheckPoints.Count;i++)
         {
@@ -176,7 +174,7 @@ public class Pursue : State
     public Pursue(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player)
                 : base(_npc, _agent, _anim, _player)
     {
-        name = STATE.PURSUE;
+        state = STATE.PURSUE;
         agent.speed = 5;
         agent.isStopped = false;
     }
@@ -220,7 +218,7 @@ public class Attack : State
     public Attack(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player)
                 : base(_npc, _agent, _anim, _player)
     {
-        name = STATE.ATTACK;
+        state = STATE.ATTACK;
         shoot=_npc.GetComponent<AudioSource>(); 
     }
 

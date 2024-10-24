@@ -12,15 +12,13 @@ public class AI : MonoBehaviour
 
     void Start()
     {
-        agent=this.GetComponent<NavMeshAgent>();
-        anim = this.GetComponent<Animator>();
-        currentStage = new Idle(this.gameObject, agent, anim, player);
+        agent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
+        currentStage = new Idle(gameObject, agent, anim, player);
     }
 
-    // Update is called once per frame
     void Update()
     {
         currentStage = currentStage.Process();
-        
     }
 }
