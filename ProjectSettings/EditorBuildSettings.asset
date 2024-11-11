@@ -6,16 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_External/1_Scenes/Loading.unity
+    path: Assets/_Runtime/Culling/1_Scenes/Loading.unity
     guid: c505a9db19b31eb44925d836ca9c5550
   - enabled: 1
-    path: Assets/_External/1_Scenes/DataHolder.unity
+    path: Assets/_Runtime/Culling/1_Scenes/DataHolder.unity
     guid: f801cdc02307fdd40a6791ad60927369
   - enabled: 1
-    path: Assets/_External/1_Scenes/Menu.unity
+    path: Assets/_Runtime/Culling/1_Scenes/Menu.unity
     guid: a6f5a16c06941334eb7f66c63f64acc5
   - enabled: 1
-    path: Assets/_External/1_Scenes/Level_1.unity
+    path: Assets/_Runtime/Culling/1_Scenes/Level_1.unity
     guid: 8e6cb111222ed1843acc2e06256a4153
   - enabled: 1
     path: Assets/_Runtime/Cinema/CinemaTest.unity
