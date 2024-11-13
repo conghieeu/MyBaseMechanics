@@ -43,7 +43,7 @@ public class Dialogue : MonoBehaviour
 
 	private IEnumerator LoadDialogue(int from, int to, UnityAction callback)
 	{
-		background.enabled = true;
+		if (background) background.enabled = true;
 		text.text = "";
 		int lineIndex = from;
 		while (lineIndex <= to)
@@ -103,8 +103,11 @@ public class Dialogue : MonoBehaviour
 					char value3 = dialogue[i];
 					if (",.?!-/ $%".IndexOf(value3) == -1)
 					{
-						source.clip = Resources.Load<AudioClip>("Sounds/Voice/" + role + Random.Range(1, 4));
-						source.Play();
+						if (source)
+						{
+							source.clip = Resources.Load<AudioClip>("Sounds/Voice/" + role + Random.Range(1, 4));
+							source.Play();
+						}
 					}
 					yield return new WaitForSeconds(loadSpeed);
 					if (state == 0)
@@ -128,14 +131,14 @@ public class Dialogue : MonoBehaviour
 	{
 		return index switch
 		{
-			"1" => "MOM", 
-			"2" => "DAD", 
-			"3" => "DOLL", 
-			"4" => "CAT", 
-			"5" => "KID", 
-			"6" => "COP", 
-			"7" => "RED FACE", 
-			_ => "", 
+			"1" => "MOM",
+			"2" => "DAD",
+			"3" => "DOLL",
+			"4" => "CAT",
+			"5" => "KID",
+			"6" => "COP",
+			"7" => "RED FACE",
+			_ => "",
 		};
 	}
 
@@ -143,15 +146,15 @@ public class Dialogue : MonoBehaviour
 	{
 		return role switch
 		{
-			"SON" => "الابن", 
-			"MOM" => "الأم", 
-			"DAD" => "الأب", 
-			"DOLL" => "دمية", 
-			"CAT" => "قطة", 
-			"KID" => "فتى", 
-			"COP" => "شرطي", 
-			"RED FACE" => "الوجه الأحمر", 
-			_ => "", 
+			"SON" => "الابن",
+			"MOM" => "الأم",
+			"DAD" => "الأب",
+			"DOLL" => "دمية",
+			"CAT" => "قطة",
+			"KID" => "فتى",
+			"COP" => "شرطي",
+			"RED FACE" => "الوجه الأحمر",
+			_ => "",
 		};
 	}
 
@@ -159,15 +162,15 @@ public class Dialogue : MonoBehaviour
 	{
 		return role switch
 		{
-			"SON" => "پسر", 
-			"MOM" => "مامان", 
-			"DAD" => "پدر", 
-			"DOLL" => "عروسک", 
-			"CAT" => "گربه", 
-			"KID" => "بچه", 
-			"COP" => "پلیس", 
-			"RED FACE" => "صورت قرمز", 
-			_ => "", 
+			"SON" => "پسر",
+			"MOM" => "مامان",
+			"DAD" => "پدر",
+			"DOLL" => "عروسک",
+			"CAT" => "گربه",
+			"KID" => "بچه",
+			"COP" => "پلیس",
+			"RED FACE" => "صورت قرمز",
+			_ => "",
 		};
 	}
 }
