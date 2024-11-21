@@ -21,6 +21,7 @@ public class Manager1 : MonoBehaviour
 				director.Pause();
 				dialogue.StartDialogue(0, 2, delegate
 				{
+					Debug.Log($"Resume");
 					director.Resume();
 				});
 				break;

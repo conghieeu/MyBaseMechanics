@@ -20,7 +20,7 @@ public class Dialogue : MonoBehaviour
 	[SerializeField]
 	private float loadSpeed;
 
-	private int state;
+	private int state; // 0 là xong, 1 đang chạy, 2 dừng tạm thời
 
 	private Coroutine cor;
 
@@ -122,7 +122,12 @@ public class Dialogue : MonoBehaviour
 			lineIndex++;
 			yield return new WaitUntil(() => state == 0);
 		}
-		background.enabled = false;
+
+		
+        if(background)
+		{
+			background.enabled = false;
+		}
 		text.text = "";
 		callback?.Invoke();
 	}
