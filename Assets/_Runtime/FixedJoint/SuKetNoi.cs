@@ -39,10 +39,10 @@ public class SuKetNoi : MonoBehaviour
                 joint.angularYMotion = ConfigurableJointMotion.Locked;
                 joint.angularZMotion = ConfigurableJointMotion.Locked;
 
-                // // Cải thiện độ ổn định của khớp nối
-                // joint.projectionMode = JointProjectionMode.PositionAndRotation;
-                joint.projectionDistance = 0f; // Không cho phép khoảng cách
-                // joint.projectionAngle = 1f; // Không cho phép góc
+                // Cải thiện độ ổn định của khớp nối
+                joint.projectionMode = JointProjectionMode.PositionAndRotation;
+                joint.projectionDistance = 0.05f; // Không cho phép khoảng cách
+                joint.projectionAngle = 0.05f; // Không cho phép góc
 
                 // Đặt ngưỡng lực và mômen xoắn để tự động ngắt kết nối
                 joint.breakForce = nguongLucVaCham;
@@ -68,12 +68,20 @@ public class SuKetNoi : MonoBehaviour
                 // Kiểm tra nếu lực vượt quá ngưỡng
                 if (force.magnitude > nguongLucVaCham)
                 {
+                    // In ra thông báo đối tượng bị lực va đập vượt ngưỡng
+                    InRaThongBaoLucVuotNguong(joint, force);
+
                     // Ngắt kết nối
                     Destroy(joint);
                     danhSachConfigurableJoint.RemoveAt(i);
-                    Debug.Log("Ngắt kết nối do lực vượt ngưỡng: " + force.magnitude);
                 }
             }
         }
+    }
+
+    // Hàm in ra thông báo khi lực vượt ngưỡng
+    private void InRaThongBaoLucVuotNguong(ConfigurableJoint joint, Vector3 force)
+    {
+        Debug.Log("Đối tượng " + joint.connectedBody.name + " bị lực va đập vượt ngưỡng: " + force.magnitude);
     }
 }

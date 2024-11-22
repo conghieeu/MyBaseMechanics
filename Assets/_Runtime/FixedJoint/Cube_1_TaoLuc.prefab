@@ -147,8 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23bb9d3c712daf84a85932465e1a0330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nguongLucVaCham: 1000
-  nguongMoMenXoay: 1000
+  nguongLucVaCham: 100
+  nguongMoMenXoay: 100
   danhSachDoiTuongCanKetNoi: []
 --- !u!114 &-4383443480393571160
 MonoBehaviour:

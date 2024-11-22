@@ -5,11 +5,9 @@ using UnityEngine.SceneManagement;
 public class Manager1 : MonoBehaviour
 {
 	public static Manager1 instance;
-
+	
 	[SerializeField] PlayableDirector director;
-
 	[SerializeField] int eventIndex;
-
 	[SerializeField] Dialogue dialogue;
 
 	[ContextMenu("TriggerEvent")]
@@ -21,7 +19,6 @@ public class Manager1 : MonoBehaviour
 				director.Pause();
 				dialogue.StartDialogue(0, 2, delegate
 				{
-					Debug.Log($"Resume");
 					director.Resume();
 				});
 				break;
