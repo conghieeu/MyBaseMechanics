@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
+    [Header("Enitity")]
 	[SerializeField] EntityData entityData;
     [SerializeField] bool isDestroyed;
 

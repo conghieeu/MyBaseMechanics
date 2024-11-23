@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Item : Entity
 {
+    [Header("Item")]
     [SerializeField] ItemData itemData;
 
     public ItemData ItemData
