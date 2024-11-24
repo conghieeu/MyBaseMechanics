@@ -74,7 +74,7 @@ GameObject:
   m_Component:
   - component: {fileID: 492382366279227813}
   - component: {fileID: 6844372358860531350}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
@@ -109,8 +109,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c236fadc47ca8b34cb387cec53a2896b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 10
+  rotationSpeed: 300
   rotationPoint: {fileID: 2949859855498221094}
+  correctPassword: 1234
+  rotationAxis: {x: 0, y: 1, z: 0}
+  closedAngle: 0
+  openAngle: 150
 --- !u!1 &7949003822006247763
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +127,7 @@ GameObject:
   - component: {fileID: 2873926860834274774}
   - component: {fileID: 926359495962568755}
   - component: {fileID: 402662233496572418}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

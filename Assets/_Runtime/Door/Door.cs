@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Door : MonoBehaviour
+public class Door : MonoBehaviour, IInteractable
 {
     [SerializeField] float rotationSpeed = 300f;
     [SerializeField] Transform rotationPoint;
@@ -14,7 +14,7 @@ public class Door : MonoBehaviour
 
     void Update()
     {
-        NhanFDeTest();
+        // NhanFDeTest();
     }
 
     private void NhanFDeTest()
@@ -23,6 +23,11 @@ public class Door : MonoBehaviour
         {
             TriggerDoor();
         }
+    }
+
+    public void Interact()
+    {
+        TriggerDoor();
     }
 
     public void TriggerDoor()
