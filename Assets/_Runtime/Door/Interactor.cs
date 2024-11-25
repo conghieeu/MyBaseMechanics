@@ -12,7 +12,6 @@ public class Interactor : MonoBehaviour
         {
             TryInteract();
         }
-
     }
 
     private void FixedUpdate()

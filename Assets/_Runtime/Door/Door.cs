@@ -9,12 +9,13 @@ public class Door : MonoBehaviour, IInteractable
     [SerializeField] Vector3 rotationAxis = Vector3.up; // Trục xoay
     [SerializeField] float closedAngle = 0f; // Góc đóng cửa
     [SerializeField] float openAngle = 150f; // Góc mở cửa
+    [SerializeField] bool useFKey = false;
     private bool isOpen = false; // Trạng thái cửa
     private Coroutine currentRotationCoroutine = null; // Biến để theo dõi Coroutine hiện tại 
 
     void Update()
     {
-        // NhanFDeTest();
+        if (useFKey) NhanFDeTest();
     }
 
     private void NhanFDeTest()
