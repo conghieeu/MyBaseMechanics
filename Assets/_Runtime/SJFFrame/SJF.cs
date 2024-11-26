@@ -73,7 +73,7 @@ public class SJF : MonoBehaviour
             processes.Remove(nextProcess);
             processesDone.Add(nextProcess);
  
-            SJFManager.CreateProgressBar(nextProcess.name, nextProcess.arrivalTime, nextProcess.brustTime, startTime);
+            SJFManager.OnNextProcess(nextProcess, startTime);
 
             // Đợi cho đến khi quá trình này hoàn thành, trừ khi đây là quá trình cuối cùng
             if (processes.Count > 0)

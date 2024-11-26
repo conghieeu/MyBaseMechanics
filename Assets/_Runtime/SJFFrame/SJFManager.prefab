@@ -49,3 +49,9 @@ MonoBehaviour:
   ContentInputBarProgress: {fileID: 0}
   InputBarProgressPrefab: {fileID: 2189182896714197711, guid: 6fee152546324174da14ee54e62ac293, type: 3}
   SJF: {fileID: 0}
+  ContentProgressBar: {fileID: 0}
+  ProgressBarPrefab: {fileID: 8299566752913106654, guid: b3d5cda3d7820b64ba09491b38559729, type: 3}
+  khachHangPPrefabs: {fileID: 1438692980837838159, guid: b1780717f54f5824295b750ee2f82d14, type: 3}
+  SpawnPoint: {fileID: 0}
+  WaitingPoint: {fileID: 0}
+  OutPoint: {fileID: 0}
