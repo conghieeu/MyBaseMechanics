@@ -6,7 +6,7 @@ public class PopupMoveScale : MonoBehaviour
     [SerializeField] private Transform hiddenPoint;
     [SerializeField] private Transform shownPoint;
 
-    private void MoveAndScaleUp()
+    public void MoveAndScaleUp()
     {
         transform.localScale = Vector3.zero;
         transform.position = hiddenPoint.position; // Sử dụng điểm ẩn
@@ -15,7 +15,7 @@ public class PopupMoveScale : MonoBehaviour
     }
 
     [ContextMenu("MoveAndScaleDown")]
-    private void MoveAndScaleDown()
+    public void MoveAndScaleDown()
     {
         transform.DOMove(hiddenPoint.position, 0.5f).SetEase(Ease.InBack);
         transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBack).OnComplete(() => gameObject.SetActive(false));
