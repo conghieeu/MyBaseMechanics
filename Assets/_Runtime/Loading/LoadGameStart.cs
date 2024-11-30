@@ -15,7 +15,7 @@ namespace Core
 
         private void Start()
         {
-            m_async = SceneManager.LoadSceneAsync(SceneName.DataHolder.ToString(), LoadSceneMode.Additive);
+            m_async = SceneManager.LoadSceneAsync(SceneName.GameData.ToString(), LoadSceneMode.Additive);
             // m_async = SceneManager.LoadSceneAsync(GameScene.OptionsMenu.ToString(), LoadSceneMode.Additive);
         }
 

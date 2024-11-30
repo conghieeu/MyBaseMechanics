@@ -1,6 +1,6 @@
 public enum SceneName
 {
-    DataHolder,
+    GameData,
     Menu,
     Demo,
     Level_1,
