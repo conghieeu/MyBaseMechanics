@@ -54,6 +54,7 @@ namespace Parity.SFInventory2.Core
 
         public void UpdateCellUI()
         {
+            // hiển thị icon vật phẩm
             if (_item != null)
             {
                 _icon.color = Color.white;
@@ -65,6 +66,7 @@ namespace Parity.SFInventory2.Core
                 _icon.color = Color.clear;
                 _icon.sprite = null;
             }
+            // hiển thị số lượng vật phẩm
             if (_itemsCount > 1)
                 _itemsCountText.text = "x" + ItemsCount;
             else

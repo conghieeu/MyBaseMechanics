@@ -77,8 +77,6 @@ public class DataManager : Singleton<DataManager>
         }
     }
 
-
-
     /// <summary> Let's first serialize and encrypt.... </summary>
     private string SerializeAndEncrypt(GameData gameData)
     {

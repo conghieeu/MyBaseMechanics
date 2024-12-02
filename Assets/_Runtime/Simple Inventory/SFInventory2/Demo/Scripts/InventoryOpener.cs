@@ -46,6 +46,7 @@ namespace Parity.SFInventory2.Testing
             }
         }
 
+        // coroutine that smoothly opens the inventory
         private IEnumerator ProceedOpening()
         {
             if (_opened)

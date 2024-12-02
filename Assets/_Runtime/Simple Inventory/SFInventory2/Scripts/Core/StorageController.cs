@@ -35,11 +35,13 @@ namespace Parity.SFInventory2.Core
 
             var cells = _currentChest.GetCells();
 
+            // nếu có kho thì mở kho
             if (cells != null)
             {
                 _storage.gameObject.SetActive(true);
                 if (cells.Count > 0)
                 {
+                    // nếu có vật phẩm thì di chuyển vật phẩm từ kho hiện tại sang kho mới
                     for (int i = 0; i < inventoryCells.Count; i++)
                     {
                         inventoryCells[i].MigrateCell(cells[i]);
@@ -47,12 +49,14 @@ namespace Parity.SFInventory2.Core
                 }
                 else
                 {
+                    // nếu không có vật phẩm thì đặt vật phẩm là null
                     for (int i = 0; i < inventoryCells.Count; i++)
                     {
                         inventoryCells[i].SetInventoryItem(null);
                     }
                 }
             }
+            // cập nhật lại UI
             for (int i = 0; i < inventoryCells.Count; i++)
             {
                 inventoryCells[i].UpdateCellUI();
@@ -74,6 +78,7 @@ namespace Parity.SFInventory2.Core
             {
                 if (inventoryCells.Count > 0)
                 {
+                    // lưu trữ đồ vật vào kho
                     _currentChest.SaveItems(inventoryCells.Select(s => new StorageItem
                     {
                         item = s.Item,
@@ -82,6 +87,7 @@ namespace Parity.SFInventory2.Core
                 }
                 else
                 {
+                    // nếu không có vật phẩm thì đặt vật phẩm là null
                     _currentChest.SaveItems(new List<StorageItem>());
                 }
             }
